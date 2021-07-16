@@ -1,0 +1,53 @@
+.task-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 0.5px solid;
+  border-color: black;
+
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-container {
+  margin-right: 8px;
+}
+
+.checkbox {
+  height: 15px;
+  width: 15px;
+}
+
+.task-input {
+  outline: none;
+  border: 0;
+  font-size: 16px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.buttons {
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit-button {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.delete-button {
+  padding: 5px;
+}
