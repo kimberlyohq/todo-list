@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// @flow
+import * as React from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Todo } from "./components/Todo";
+import { TodoForm } from "./components/TodoForm";
+
+type TodoProps = {
+  id: number,
+  text: string,
+  done: boolean,
+};
+type State = {
+  todos: TodoProps[],
+};
+class App extends React.Component<{}, State> {
+  state: State = {
+    todos: [{ id: 1, text: "Hello", done: false }],
+  };
+
+  render(): React.Node {
+    return (
+      <div className="App">
+        <TodoForm />
+        {this.state.todos.map((todo) => (
+          <Todo key={todo.id} id={todo.id} text={todo.text} done={todo.done} />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default App;
