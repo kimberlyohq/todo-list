@@ -35,6 +35,18 @@ class App extends React.Component<{}, State> {
     this.setState({ todos: updatedTodos });
   };
 
+  editTodo: (id: number, text: string) => void = (id: number, text: string): void => {
+    const updatedTodos = this.state.todos.map((todo) => {
+      if (todo.id !== id) {
+        return todo;
+      }
+      const editedTodo = { ...todo, text};
+      return editedTodo;
+    });
+
+    this.setState({ todos: updatedTodos });
+  };
+
   deleteTodo: (id: number) => void = (id: number): void => {
     const updatedTodos = this.state.todos.filter((todo) => todo.id !== id);
 
@@ -53,6 +65,7 @@ class App extends React.Component<{}, State> {
             done={todo.done}
             toggleTodo={this.toggleTodo}
             deleteTodo={this.deleteTodo}
+            editTodo={this.editTodo}
           />
         ))}
       </div>
