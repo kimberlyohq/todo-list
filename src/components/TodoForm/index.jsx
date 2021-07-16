@@ -3,7 +3,9 @@
 import * as React from "react";
 import "./TodoForm.css";
 
-type TodoFormProps = {};
+type TodoFormProps = {
+  addTodo: (text: string) => void,
+};
 
 type TodoFormState = {
   inputValue: string,
@@ -23,9 +25,9 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
       alert("Cannot add an empty task !");
       return;
     }
-    console.log(trimmedInputValue);
-    console.log("submitted");
+
     this.setState({ inputValue: "" });
+    this.props.addTodo(trimmedInputValue);
   };
 
   render(): React.Node {

@@ -18,10 +18,15 @@ class App extends React.Component<{}, State> {
     todos: [{ id: 1, text: "Hello", done: false }],
   };
 
+  addTodo: (text: string) => void = (text: string): void => {
+    const newTodo = { id: Math.random(), text, done: false };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
+
   render(): React.Node {
     return (
       <div className="App">
-        <TodoForm />
+        <TodoForm addTodo={this.addTodo} />
         {this.state.todos.map((todo) => (
           <Todo key={todo.id} id={todo.id} text={todo.text} done={todo.done} />
         ))}
