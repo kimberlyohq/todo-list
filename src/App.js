@@ -15,7 +15,7 @@ type State = {
 };
 class App extends React.Component<{}, State> {
   state: State = {
-    todos: [{ id: 1, text: "Hello", done: false }],
+    todos: [],
   };
 
   addTodo: (text: string) => void = (text: string): void => {
@@ -35,6 +35,12 @@ class App extends React.Component<{}, State> {
     this.setState({ todos: updatedTodos });
   };
 
+  deleteTodo: (id: number) => void = (id: number): void => {
+    const updatedTodos = this.state.todos.filter((todo) => todo.id !== id);
+
+    this.setState({ todos: updatedTodos });
+  };
+
   render(): React.Node {
     return (
       <div className="App">
@@ -46,6 +52,7 @@ class App extends React.Component<{}, State> {
             text={todo.text}
             done={todo.done}
             toggleTodo={this.toggleTodo}
+            deleteTodo={this.deleteTodo}
           />
         ))}
       </div>

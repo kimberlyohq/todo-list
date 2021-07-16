@@ -8,6 +8,7 @@ type TodoProps = {
   text: string,
   done: boolean,
   toggleTodo: (id: number) => void,
+  deleteTodo: (id: number) => void,
 };
 
 type TodoState = {
@@ -19,10 +20,8 @@ export class Todo extends React.Component<TodoProps, TodoState> {
     isEditing: false,
   };
 
-  handleDelete: (event: SyntheticEvent<HTMLButtonElement>) => void = (
-    event: SyntheticEvent<HTMLButtonElement>
-  ) => {
-    console.log("delete");
+  handleDelete: (id: number) => void = (id: number) => {
+    this.props.deleteTodo(id);
   };
 
   handleEdit: (event: SyntheticEvent<HTMLButtonElement>) => void = (
@@ -45,9 +44,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
             <input
               type="checkbox"
               checked={done}
-              onChange={(event: SyntheticEvent<HTMLInputElement>) =>
-                this.handleToggle(id)
-              }
+              onChange={() => this.handleToggle(id)}
               className="checkbox"
             />
           </div>
@@ -62,7 +59,10 @@ export class Todo extends React.Component<TodoProps, TodoState> {
             {this.state.isEditing ? "Confirm" : "Edit"}
           </button>
           {!this.state.isEditing && (
-            <button onClick={this.handleDelete} className="delete-button">
+            <button
+              onClick={() => this.handleDelete(id)}
+              className="delete-button"
+            >
               Delete
             </button>
           )}
