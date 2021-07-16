@@ -7,6 +7,7 @@ type TodoProps = {
   id: number,
   text: string,
   done: boolean,
+  toggleTodo: (id: number) => void,
 };
 
 type TodoState = {
@@ -17,7 +18,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
   state: TodoState = {
     isEditing: false,
   };
-  
+
   handleDelete: (event: SyntheticEvent<HTMLButtonElement>) => void = (
     event: SyntheticEvent<HTMLButtonElement>
   ) => {
@@ -30,10 +31,8 @@ export class Todo extends React.Component<TodoProps, TodoState> {
     console.log("edit");
   };
 
-  handleToggle: (event: SyntheticEvent<HTMLInputElement>) => void = (
-    event: SyntheticEvent<HTMLInputElement>
-  ) => {
-    console.log(`toggle ${this.props.id}`);
+  handleToggle: (id: number) => void = (id: number) => {
+    this.props.toggleTodo(id);
   };
 
   render(): React.Node {
@@ -46,7 +45,9 @@ export class Todo extends React.Component<TodoProps, TodoState> {
             <input
               type="checkbox"
               checked={done}
-              onChange={this.handleToggle}
+              onChange={(event: SyntheticEvent<HTMLInputElement>) =>
+                this.handleToggle(id)
+              }
               className="checkbox"
             />
           </div>
