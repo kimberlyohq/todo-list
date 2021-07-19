@@ -3,15 +3,11 @@ import * as React from "react";
 import "./App.css";
 
 import { Todo } from "./components/Todo";
+import type { TodoItem } from "./components/Todo";
 import { TodoForm } from "./components/TodoForm";
 
-type TodoProps = {
-  id: number,
-  text: string,
-  done: boolean,
-};
 type State = {
-  todos: TodoProps[],
+  todos: TodoItem[],
 };
 class App extends React.Component<{}, State> {
   state: State = {
@@ -35,12 +31,15 @@ class App extends React.Component<{}, State> {
     this.setState({ todos: updatedTodos });
   };
 
-  editTodo: (id: number, text: string) => void = (id: number, text: string): void => {
+  editTodo: (id: number, text: string) => void = (
+    id: number,
+    text: string
+  ): void => {
     const updatedTodos = this.state.todos.map((todo) => {
       if (todo.id !== id) {
         return todo;
       }
-      const editedTodo = { ...todo, text};
+      const editedTodo = { ...todo, text };
       return editedTodo;
     });
 
@@ -54,15 +53,14 @@ class App extends React.Component<{}, State> {
   };
 
   render(): React.Node {
+    const { todos } = this.state;
     return (
       <div className="App">
         <TodoForm addTodo={this.addTodo} />
-        {this.state.todos.map((todo) => (
+        {todos.map((todo) => (
           <Todo
             key={todo.id}
-            id={todo.id}
-            text={todo.text}
-            done={todo.done}
+            todo={todo}
             toggleTodo={this.toggleTodo}
             deleteTodo={this.deleteTodo}
             editTodo={this.editTodo}

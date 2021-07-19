@@ -3,10 +3,13 @@
 import * as React from "react";
 import "./Todo.css";
 
-type TodoProps = {
+export type TodoItem = {
   id: number,
   text: string,
   done: boolean,
+};
+type TodoProps = {
+  todo: TodoItem,
   toggleTodo: (id: number) => void,
   deleteTodo: (id: number) => void,
   editTodo: (id: number, text: string) => void,
@@ -20,7 +23,7 @@ type TodoState = {
 export class Todo extends React.Component<TodoProps, TodoState> {
   state: TodoState = {
     isEditing: false,
-    inputValue: this.props.text,
+    inputValue: this.props.todo.text,
   };
 
   handleDelete: (id: number) => void = (id: number) => {
@@ -55,7 +58,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
   };
 
   render(): React.Node {
-    const { id, text, done } = this.props;
+    const { id, text, done } = this.props.todo;
 
     return (
       <div className="task-container">
