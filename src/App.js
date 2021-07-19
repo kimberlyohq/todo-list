@@ -70,7 +70,7 @@ class App extends React.Component<{}, State> {
     const filteredTodos = todos.filter(FILTERS[filter]);
     return (
       <div className="App">
-        <h1> To Do List</h1>
+        <h1> To Do List 📝</h1>
         <h4>{filteredTodos.length} To Do</h4>
         <TodoForm addTodo={this.addTodo} />
         <FilterBar
