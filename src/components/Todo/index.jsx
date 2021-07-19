@@ -17,13 +17,13 @@ type TodoProps = {
 
 type TodoState = {
   isEditing: boolean,
-  inputValue: string,
 };
 
 export class Todo extends React.Component<TodoProps, TodoState> {
+  input: ?HTMLInputElement;
+
   state: TodoState = {
     isEditing: false,
-    inputValue: this.props.todo.text,
   };
 
   handleDelete: (id: number) => void = (id: number) => {
@@ -41,7 +41,11 @@ export class Todo extends React.Component<TodoProps, TodoState> {
       return;
     }
 
-    const trimmedInputValue = this.state.inputValue.trim();
+    if(!this.input) {
+      return ;
+    }
+    
+    const trimmedInputValue = this.input.value.trim();
 
     if (!trimmedInputValue) {
       alert("Todo cannot be empty");
@@ -59,7 +63,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
 
   render(): React.Node {
     const { id, text, done } = this.props.todo;
-    const { isEditing, inputValue } = this.state;
+    const { isEditing } = this.state;
 
     return (
       <div className="task-container">
@@ -75,10 +79,8 @@ export class Todo extends React.Component<TodoProps, TodoState> {
           {isEditing ? (
             <input
               autoFocus
-              defaultValue={inputValue}
-              onChange={(event: SyntheticEvent<HTMLInputElement>) =>
-                this.setState({ inputValue: event.currentTarget.value })
-              }
+              ref={(input) => (this.input = input)}
+              defaultValue={text}
               className="task-input"
             />
           ) : (
