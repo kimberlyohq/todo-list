@@ -20,7 +20,7 @@ type TodoState = {
 };
 
 export class Todo extends React.Component<TodoProps, TodoState> {
-  input: ?HTMLInputElement;
+  inputRef: ?HTMLInputElement;
 
   state: TodoState = {
     isEditing: false,
@@ -41,11 +41,11 @@ export class Todo extends React.Component<TodoProps, TodoState> {
       return;
     }
 
-    if(!this.input) {
-      return ;
+    if (!this.inputRef) {
+      return;
     }
     
-    const trimmedInputValue = this.input.value.trim();
+    const trimmedInputValue = this.inputRef.value.trim();
 
     if (!trimmedInputValue) {
       alert("Todo cannot be empty");
@@ -79,7 +79,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
           {isEditing ? (
             <input
               autoFocus
-              ref={(input) => (this.input = input)}
+              ref={(input) => (this.inputRef = input)}
               defaultValue={text}
               className="task-input"
             />
