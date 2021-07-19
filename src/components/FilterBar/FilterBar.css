@@ -6,3 +6,12 @@
 .container > button {
   margin-right: 15px;
 }
+
+.filter-button {
+  padding: 10px;
+  width: 90px;
+}
+
+.selected {
+  background-color: #00cdcd;
+}

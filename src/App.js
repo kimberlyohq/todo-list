@@ -17,6 +17,7 @@ const FILTER = {
   Active: (todo) => !todo.done,
   Completed: (todo) => todo.done,
 };
+
 class App extends React.Component<{}, State> {
   state: State = {
     todos: [],
@@ -71,7 +72,11 @@ class App extends React.Component<{}, State> {
         <h1> To Do List</h1>
         <h4>{todos.length} Tasks</h4>
         <TodoForm addTodo={this.addTodo} />
-        <FilterBar setFilter={this.setFilter} />
+        <FilterBar
+          selected={filter}
+          filters={Object.keys(FILTER)}
+          setFilter={this.setFilter}
+        />
         {todos.filter(FILTER[filter]).map((todo) => (
           <Todo
             key={todo.id}

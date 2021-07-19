@@ -72,7 +72,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
               className="checkbox"
             />
           </div>
-          {this.state.isEditing ? (
+          {isEditing ? (
             <input
               autoFocus
               defaultValue={inputValue}
