@@ -66,7 +66,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
     const { isEditing } = this.state;
 
     return (
-      <div className="task-container">
+      <div className="todo-container">
         <div className="left-container">
           <div className="checkbox-container">
             <input
@@ -81,7 +81,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
               autoFocus
               ref={(input) => (this.inputRef = input)}
               defaultValue={text}
-              className="task-input"
+              className="todo-input"
             />
           ) : (
             <span className={done ? "done" : ""}>{text}</span>

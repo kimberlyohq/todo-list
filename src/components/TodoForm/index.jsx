@@ -22,7 +22,7 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
     event.preventDefault();
     const trimmedInputValue = this.state.inputValue.trim();
     if (!trimmedInputValue) {
-      alert("Cannot add an empty task !");
+      alert("Cannot add an empty to do !");
       return;
     }
 
@@ -35,7 +35,7 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
       <form className="form" onSubmit={this.handleSubmit}>
         <input
           type="text"
-          placeholder="Add a new task"
+          placeholder="Add a new to do"
           value={this.state.inputValue}
           onChange={(event) =>
             this.setState({ inputValue: event.target.value })
@@ -43,7 +43,7 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
           className="form-input"
         />
         <button onClick={this.handleSubmit} className="button">
-          Add Task
+          Add To Do
         </button>
       </form>
     );

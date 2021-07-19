@@ -1,4 +1,4 @@
-.task-container {
+.todo-container {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -28,7 +28,7 @@
   width: 15px;
 }
 
-.task-input {
+.todo-input {
   outline: none;
   border: 0;
   font-size: 16px;

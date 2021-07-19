@@ -71,7 +71,7 @@ class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h1> To Do List</h1>
-        <h4>{filteredTodos.length} Tasks</h4>
+        <h4>{filteredTodos.length} To Do</h4>
         <TodoForm addTodo={this.addTodo} />
         <FilterBar
           selected={filter}
