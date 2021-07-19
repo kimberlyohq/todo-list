@@ -59,6 +59,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
 
   render(): React.Node {
     const { id, text, done } = this.props.todo;
+    const { isEditing, inputValue } = this.state;
 
     return (
       <div className="task-container">
@@ -74,7 +75,7 @@ export class Todo extends React.Component<TodoProps, TodoState> {
           {this.state.isEditing ? (
             <input
               autoFocus
-              defaultValue={this.state.inputValue}
+              defaultValue={inputValue}
               onChange={(event: SyntheticEvent<HTMLInputElement>) =>
                 this.setState({ inputValue: event.currentTarget.value })
               }
@@ -92,9 +93,9 @@ export class Todo extends React.Component<TodoProps, TodoState> {
             }
             className="edit-button"
           >
-            {this.state.isEditing ? "Confirm" : "Edit"}
+            {isEditing ? "Confirm" : "Edit"}
           </button>
-          {!this.state.isEditing && (
+          {!isEditing && (
             <button
               onClick={() => this.handleDelete(id)}
               className="delete-button"
